@@ -4,12 +4,17 @@
   "description": "Todo app built with node, express and tailwindCSS",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.2.1",
     "ejs": "^3.1.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.2"
   }
 }
