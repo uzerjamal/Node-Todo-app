@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.listItem {
+  @apply w-full p-4 text-gray-300 border-2 border-l-4 border-r-4 border-gray-900 hover:line-through hover:text-gray-500 bg-gray-800;
+}
