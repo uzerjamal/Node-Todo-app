@@ -1,22 +1,38 @@
 const bodyParser = require("body-parser");
-let data = ['Get milk', 'Walk dog', 'Do coding', 'Go Home'];
-let urlencodedParser = bodyParser.urlencoded({extended: false});
+const mongoose = require('mongoose');
+let data = [];
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+
+//DATABASE
+const dbURL = '' //removed for security purposes
+mongoose.connect(dbURL, {useNewUrlParser: true, useUnifiedTopology: true });
+const todoModel = mongoose.model('Todo', {item: String});
+
+let render = (res) => {
+    todoModel.find((err, todo) => {
+        if (err) throw err;
+        res.render('index', {todos: todo});
+    });
+}
+
 
 module.exports = (app) => {
 
 app.get('/', (req, res) => {
-    res.render('index', {todos: data});
+    render(res);
 });    
 
 app.post('/', urlencodedParser, (req, res) =>{
-    console.log('Post Request Recieved');
-    data.push(req.body.item);
-    res.render('index', {todos: data});
+    const task = new todoModel(req.body);
+    task.save().then(() =>{
+        render(res);
+    });
 });
 
 app.delete('/:item', (req, res) =>{
-    data = data.filter((value) =>{
-        return value !== req.params.item;
-    });
+    todoModel.find({item: req.params.item}).deleteOne((err, data) =>{
+        if (err) throw err;
+        render(res);
+    })
 });
 };
