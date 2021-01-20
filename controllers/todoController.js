@@ -4,7 +4,7 @@ let data = [];
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 //DATABASE
-const dbURL = '' //removed for security purposes
+const dbURL = 'mongodb+srv://admin:todoadmin@cluster0.ox0mo.mongodb.net/todo?retryWrites=true&w=majority' //removed for security purposes
 mongoose.connect(dbURL, {useNewUrlParser: true, useUnifiedTopology: true });
 const todoModel = mongoose.model('Todo', {item: String});
 

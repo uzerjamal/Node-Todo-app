@@ -4,6 +4,7 @@
   "description": "Todo app built with node, express and tailwindCSS",
   "main": "app.js",
   "scripts": {
+    "start": "node app"
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css"
   },
